@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <script src="cookies.js"></script>
+    <style>
+        body{
+            background-image: url(https://media.istockphoto.com/id/1203233907/vector/chocolate-chip-cokies-pattern-design-bake-pattern-design.jpg?s=612x612&w=0&k=20&c=frm2pseZ_yi9WlJ7zvWoxQUB49svhqRKUSIuDYy2FZw=);
+        }
+        div{
+        background-color: lightblue;
+        border: 5px solid;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <h1>We're back in! NOM NOM NOM.</h1>
+    <h2>byukg24{N0M_N0m_M3_L0VE_C00kies93029134643}</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/mQE0LQFFn3s?si=iirsXSzJtmoPRTxn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+<script>
+    // Function to check if the user is an admin on the admin page
+    function checkAdminOnAdminPage() {
+        var isAdmin = getCookie("isAdmin");
+        console.log("isAdmin on admin page:", isAdmin);
+
+        if (isAdmin !== "1") {
+            alert("Access Denied. You are not an admin.");
+            window.location.href = "index.html"; // Redirect to the main page or another page
+        }
+    }
+
+    // Call checkAdminOnAdminPage when the admin page loads
+    window.onload = checkAdminOnAdminPage;
+</script>
+
+<!-- Rest of the admin page content -->
+
+</body>
+</html>

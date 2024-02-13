@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Example</title>
+    <script src="cookies.js"></script>
+    <style>
+        body{
+            background-image: url(https://media.istockphoto.com/id/1203233907/vector/chocolate-chip-cokies-pattern-design-bake-pattern-design.jpg?s=612x612&w=0&k=20&c=frm2pseZ_yi9WlJ7zvWoxQUB49svhqRKUSIuDYy2FZw=);
+        }
+        div{
+        background-color: lightblue;
+        border: 5px solid;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <h1>Cookie Monster has lost access to his stache of unlimited cookies!</h1>
+    <p>Before Cookie Monster had admin privielges and was able to easily access to all of his of cookies. But he got locked out and he's desperate for some cookies. Help him get back in.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/kKW7TIjqZAA?si=_Th2wD_u_pYSrMXO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+<script>
+    // Function to check if the user is an admin
+    function checkAdmin() {
+        var isAdmin = getCookie("isAdmin");
+        console.log("isAdmin:", isAdmin);
+
+        // Clear localStorage flag on each page load
+        localStorage.removeItem("isAdminRedirected");
+
+        // Check if the user is coming from the admin page after navigating back
+        var isComingFromAdmin = document.referrer.endsWith("adminpage.html");
+
+        if (isAdmin === "1" && !isComingFromAdmin) {
+            window.location.href = "adminpage.html"; // Redirect to admin page
+            // Set flag to indicate that the user has been redirected
+            localStorage.setItem("isAdminRedirected", "true");
+        } else if (isAdmin === "1") {
+            console.log("User is already on admin page or coming from admin page");
+        } else {
+            alert("You are not an admin.");
+            // You can redirect or show a message for guest users here
+        }
+    }
+
+    // Function to set the isAdmin cookie to 0 (Guest) on the first page load
+    function setGuestCookieOnFirstLoad() {
+        var isAdmin = getCookie("isAdmin");
+        if (isAdmin === null) {
+            setCookie("isAdmin", "0", 1);
+        }
+        checkAdmin(); // Check the user role after setting the cookie
+    }
+
+    // Call setGuestCookieOnFirstLoad when the page loads
+    window.onload = setGuestCookieOnFirstLoad;
+</script>
+
+</body>
+</html>
+
